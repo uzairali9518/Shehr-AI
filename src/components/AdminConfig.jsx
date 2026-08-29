@@ -152,7 +152,7 @@ on conflict (union_council_id) do update set score = excluded.score, is_repeat_o
           <Key className="inline-icon color-primary" /> Gemini AI Arbitrator Setup
         </h2>
         <p className="admin-desc">
-          Shehr AI utilizes Google Gemini 1.5 Flash to automatically arbitrate disputes between government collection claims and citizen photographs.
+          Shehr AI utilizes Google Gemini 3.5 Flash to automatically arbitrate disputes between government collection claims and citizen photographs.
         </p>
 
         <div className="status-grid">

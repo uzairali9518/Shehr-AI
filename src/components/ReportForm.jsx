@@ -66,7 +66,7 @@ async function urlToBase64(url) {
 
 // Call Gemini API
 async function analyzePhotosWithGemini(govPhotoBase64, citizenPhotoBase64, apiKey) {
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${apiKey}`;
   
   const payload = {
     contents: [
@@ -111,7 +111,23 @@ async function analyzePhotosWithGemini(govPhotoBase64, citizenPhotoBase64, apiKe
     clearTimeout(timeoutId);
 
     if (!response.ok) {
-      throw new Error(`Gemini API returned status ${response.status}`);
+      let errDetail = `status ${response.status}`;
+      try {
+        const errBody = await response.json();
+        const msg = errBody?.error?.message;
+        const code = errBody?.error?.code;
+        const status = errBody?.error?.status;
+        errDetail = `status ${response.status}`;
+        if (code) errDetail += ` (code ${code})`;
+        if (status) errDetail += ` [${status}]`;
+        if (msg) errDetail += ` — ${msg}`;
+        if (url.includes('v1beta')) {
+          errDetail += ` | If status 404 / NOT_FOUND, try re-running after enabling the Google Generative Language API ("Generative Language API" / Gemini API) in your Google Cloud project, or verify the key belongs to a project where the API is enabled.`;
+        }
+      } catch (_) {
+        // ignore body read failure, keep the basic status message
+      }
+      throw new Error(`Gemini API returned ${errDetail}`);
     }
 
     const result = await response.json();
@@ -759,7 +775,7 @@ export default function ReportForm({ unionCouncils, claimedCollections, reports,
                 {verificationStep >= 3 && <div className="terminal-line">&gt; Performing GPS spatial distance analysis...</div>}
                 {verificationStep >= 4 && (
                   <>
-                    <div className="terminal-line text-success">&gt; Spatial checks cleared. Launching Gemini 1.5 Flash...</div>
+                    <div className="terminal-line text-success">&gt; Spatial checks cleared. Launching Gemini 3.5 Flash...</div>
                     <div className="terminal-line">&gt; Transmitting Image A (Gov Claim) & Image B (Dispute) to AI auditor...</div>
                   </>
                 )}
@@ -833,7 +849,7 @@ export default function ReportForm({ unionCouncils, claimedCollections, reports,
                   
                   <li className="checklist-item flex-between pass">
                     <span>3. Arbitration API Trigger:</span>
-                    <strong>{apiArbitrated ? 'Live Gemini 1.5 Flash' : 'Cached Fallback (Demo Net)'}</strong>
+                    <strong>{apiArbitrated ? 'Live Gemini 3.5 Flash' : 'Cached Fallback (Demo Net)'}</strong>
                   </li>
                 </ul>
               </div>
