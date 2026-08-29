@@ -1787,3 +1787,501 @@ h1, h2, h3, h4, h5, h6 {
 .footer-copyright {
   color: var(--color-text-muted);
 }
+
+/* ============================================================
+   RESPONSIVE STYLES — Mobile-first breakpoints
+   Breakpoints: <480px (mobile), <768px (tablet down), >=1024px (desktop)
+   ============================================================ */
+
+/* Prevent horizontal overflow globally */
+* {
+  max-width: 100%;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+/* ===== Global touch-friendly sizing for mobile ===== */
+@media (max-width: 768px) {
+  .btn, .nav-tab, .gps-btn, .filter-select, .form-input, .expand-btn, .btn-case-link, .mode-btn, .copy-btn, .reset-action .btn {
+    min-height: 44px;
+  }
+}
+
+/* ===== App wrapper: tighter gutters on small screens ===== */
+@media (max-width: 768px) {
+  .shehr-ai-app {
+    padding: 12px 10px;
+  }
+}
+
+/* ===== Main header: stack elements on mobile ===== */
+.header-right-row {
+  gap: 10px;
+}
+
+.mobile-nav-toggle {
+  display: none;
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--color-white);
+  padding: 6px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  line-height: 1;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  min-height: 40px;
+}
+
+@media (max-width: 768px) {
+  .main-header {
+    padding: 15px;
+    gap: 12px;
+    flex-direction: column;
+    align-items: stretch !important;
+  }
+  .main-header .flex-between {
+    justify-content: space-between;
+  }
+  .header-title {
+    font-size: 1.4rem;
+  }
+  .header-subtitle {
+    font-size: 0.75rem;
+  }
+  .logo-icon {
+    font-size: 1.8rem;
+    margin-right: 10px;
+  }
+  .header-right-row {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+  .header-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    flex-grow: 1;
+  }
+  .hackathon-tag {
+    margin-right: 0;
+    font-size: 0.7rem;
+  }
+  .mobile-nav-toggle {
+    display: inline-flex;
+    flex-shrink: 0;
+  }
+}
+
+/* ===== Tab Navigation: collapse to hamburger drawer ===== */
+@media (max-width: 768px) {
+  .tab-navigation {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    padding: 8px;
+    margin-bottom: 15px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+  }
+  .tab-navigation.mobile-open {
+    display: flex;
+    max-height: 600px;
+    padding: 8px;
+  }
+  .nav-tab {
+    justify-content: flex-start !important;
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 0.95rem;
+    border-radius: 4px;
+  }
+}
+
+/* ===== Utility grids: collapse on small screens ===== */
+@media (max-width: 768px) {
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr !important;
+    gap: 12px;
+  }
+  .compact-grid {
+    gap: 8px;
+  }
+  .border-inline {
+    border-left: none;
+    border-right: none;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1023px) {
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ===== Dashboard responsiveness ===== */
+@media (max-width: 900px) {
+  .dashboard-split-layout {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  .dashboard-map-panel {
+    height: 360px;
+  }
+  .dashboard-standings-panel {
+    max-height: none;
+    overflow-y: visible;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-row {
+    margin-bottom: 15px;
+  }
+  .stat-card {
+    padding: 15px;
+  }
+  .stat-value .num {
+    font-size: 1.7rem;
+  }
+  .icon-main {
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+  .dashboard-map-panel {
+    height: 300px;
+  }
+  .section-title {
+    font-size: 1.15rem;
+  }
+  .mt-40 { margin-top: 20px; }
+  .mt-30 { margin-top: 15px; }
+  .mt-20 { margin-top: 12px; }
+  .mt-25 { margin-top: 15px; }
+  .mb-30 { margin-bottom: 15px; }
+}
+
+/* ===== UC Cards & badges — mobile ===== */
+@media (max-width: 600px) {
+  .uc-card-header {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 12px;
+  }
+  .score-container {
+    align-self: flex-start;
+  }
+  .uc-name {
+    font-size: 1rem;
+  }
+  .repeat-offender-badge {
+    font-size: 0.6rem;
+    padding: 2px 6px;
+  }
+  .audit-content {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 8px;
+  }
+  .audit-thumb {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 380px) {
+  .uc-card-stats {
+    grid-template-columns: 1fr !important;
+  }
+  .border-inline {
+    border-top: none;
+    border-bottom: none;
+  }
+}
+
+/* ===== Forms (ReportForm + GovAdmin) responsiveness ===== */
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .form-map-container {
+    height: 240px;
+  }
+  .map-picker-column {
+    margin-top: 0;
+  }
+  .file-uploader-label {
+    min-height: 150px;
+    padding: 20px 15px;
+  }
+  .upload-preview-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .upload-preview {
+    width: 100px;
+    height: 100px;
+  }
+  .upload-meta {
+    text-align: center;
+  }
+  .coords-readout {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .coords-readout .ml-20 {
+    margin-left: 0;
+  }
+  .submit-btn {
+    padding: 14px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-map-container {
+    height: 200px;
+  }
+  .card-glass,
+  .dispute-logs-view,
+  .gov-admin-container,
+  .report-form-container {
+    padding: 15px;
+  }
+  .filter-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .filter-group {
+    width: 100%;
+  }
+  .filter-group .ml-10 {
+    margin-left: 0;
+  }
+  .filter-select {
+    width: 100%;
+  }
+}
+
+/* ===== Logs / DisputeLogs list ===== */
+@media (max-width: 600px) {
+  .log-row-header {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 10px;
+  }
+  .log-row-content {
+    flex-direction: column;
+    align-items: stretch !important;
+    gap: 12px;
+  }
+  .image-preview-wrapper {
+    width: 100%;
+    height: 160px;
+    align-self: stretch;
+  }
+  .meta-row {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .meta-row .ml-20 {
+    margin-left: 0;
+  }
+  .audit-readout-strip {
+    grid-template-columns: 1fr !important;
+    gap: 8px;
+  }
+  .audit-val.text-right {
+    text-align: left !important;
+  }
+  .log-row-card {
+    padding: 15px;
+  }
+  .log-uc-name {
+    font-size: 1rem;
+  }
+}
+
+/* ===== Dispute Case Modal + photo comparison ===== */
+@media (max-width: 768px) {
+  .photo-comparison-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px;
+  }
+  .pane-img-wrapper {
+    height: 200px;
+  }
+  .case-detail-modal {
+    max-width: 100%;
+    width: 96%;
+    padding: 18px;
+  }
+  .modal-card {
+    padding: 20px 16px;
+    max-width: 96%;
+    max-height: 92vh;
+  }
+  .dispute-case-metadata {
+    grid-template-columns: 1fr !important;
+    gap: 10px;
+  }
+  .verdict-card-title {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 8px;
+  }
+  .exif-audit-strip {
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 420px) {
+  .modal-title {
+    font-size: 1.1rem;
+    gap: 6px;
+  }
+  .pane-img-wrapper {
+    height: 170px;
+  }
+  .verdict-display-card {
+    padding: 14px;
+  }
+  .verdict-reasoning {
+    font-size: 0.85rem;
+  }
+}
+
+/* ===== ReportForm verification modals (pipeline + results) ===== */
+@media (max-width: 480px) {
+  .agent-pipeline {
+    gap: 12px;
+  }
+  .pipeline-step {
+    gap: 10px;
+  }
+  .step-title {
+    font-size: 0.85rem;
+  }
+  .step-desc {
+    font-size: 0.72rem;
+  }
+  .verdict-banner {
+    padding: 14px;
+    gap: 10px;
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+  .verdict-icon {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+  .verdict-title {
+    font-size: 1rem;
+  }
+  .impact-box .flex-row {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .impact-box .ml-10 { margin-left: 0; }
+  .impact-box .mr-10 { margin-right: 0; }
+  .checklist-item {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 2px;
+  }
+}
+
+/* ===== Admin Config responsiveness ===== */
+@media (max-width: 768px) {
+  .status-grid {
+    grid-template-columns: 1fr;
+  }
+  .gemini-key-form .flex-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .gemini-key-form .ml-10 {
+    margin-left: 0;
+  }
+  .mode-toggle-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .alert {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 8px;
+  }
+  .alert-icon {
+    flex-shrink: 0;
+  }
+}
+
+/* ===== Map legend — small screens ===== */
+@media (max-width: 480px) {
+  .dashboard-map-legend {
+    width: 180px;
+    padding: 10px 12px;
+    bottom: 10px;
+    left: 10px;
+  }
+  .legend-title {
+    font-size: 0.72rem;
+  }
+  .legend-item {
+    font-size: 0.7rem;
+    margin-bottom: 5px;
+  }
+}
+
+/* ===== Footer responsiveness ===== */
+@media (max-width: 600px) {
+  .main-footer {
+    margin-top: 20px;
+    padding-top: 15px;
+  }
+  .footer-content {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 8px;
+    margin-top: 10px !important;
+  }
+  .footer-text, .footer-copyright {
+    text-align: left !important;
+  }
+}
+
+/* ===== Minor: prevent weird text overflow in badges ===== */
+.status-badge-inline,
+.repeat-offender-badge,
+.engine-badge,
+.hackathon-tag {
+  word-break: keep-all;
+  white-space: nowrap;
+}
+
+@media (max-width: 380px) {
+  .hackathon-tag {
+    display: none;
+  }
+}

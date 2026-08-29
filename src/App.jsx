@@ -6,7 +6,7 @@ import ReportForm from './components/ReportForm';
 import DisputeLogs from './components/DisputeLogs';
 import GovAdmin from './components/GovAdmin';
 import AdminConfig from './components/AdminConfig';
-import { LayoutDashboard, AlertTriangle, ScrollText, Sliders, Building, Loader } from 'lucide-react';
+import { LayoutDashboard, AlertTriangle, ScrollText, Sliders, Building, Loader, Menu, X } from 'lucide-react';
 import './App.css';
 
 const TAB_KEYS = {
@@ -31,6 +31,7 @@ export default function App() {
   const [trustScores, setTrustScores] = useState([]);
   const [dbMode, setDbMode] = useState(db.getMode());
   const [isLoading, setIsLoading] = useState(true);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   // Initialize and load data
   const loadData = async () => {
@@ -82,6 +83,7 @@ export default function App() {
   const handleTabChange = (tab) => {
     const safeTab = normalizeTab(tab);
     setActiveTab(safeTab);
+    setMobileNavOpen(false);
   };
 
   const normalizedTab = useMemo(() => normalizeTab(activeTab), [activeTab]);
@@ -155,19 +157,30 @@ export default function App() {
           </div>
         </div>
 
-        <div className="header-meta flex-row">
-          <span className="hackathon-tag font-sm">
-            🏆 Code for Pakistan Smart City Hackathon 2026
-          </span>
-          <div className={`mode-indicator ${dbMode}`}>
-            <span className="indicator-dot"></span>
-            {dbMode === 'supabase' ? 'Supabase Live' : 'Demo Sandbox'}
+        <div className="header-right-row flex-row">
+          <div className="header-meta flex-row">
+            <span className="hackathon-tag font-sm">
+              🏆 Code for Pakistan Smart City Hackathon 2026
+            </span>
+            <div className={`mode-indicator ${dbMode}`}>
+              <span className="indicator-dot"></span>
+              {dbMode === 'supabase' ? 'Supabase Live' : 'Demo Sandbox'}
+            </div>
           </div>
+
+          {/* Mobile Nav Toggle */}
+          <button
+            className="mobile-nav-toggle"
+            onClick={() => setMobileNavOpen(!mobileNavOpen)}
+            aria-label={mobileNavOpen ? 'Close navigation' : 'Open navigation'}
+          >
+            {mobileNavOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
         </div>
       </header>
 
       {/* Navigation Tabs Bar */}
-      <nav className="tab-navigation flex-row">
+      <nav className={`tab-navigation flex-row ${mobileNavOpen ? 'mobile-open' : ''}`}>
         <button
           className={`nav-tab flex-center ${activeTab === TAB_KEYS.DASHBOARD ? 'active' : ''}`}
           onClick={() => handleTabChange(TAB_KEYS.DASHBOARD)}
