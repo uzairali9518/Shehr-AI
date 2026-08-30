@@ -30,7 +30,7 @@ When a government worker claims an area is cleaned, and a citizen disputes that 
 * **Frontend:** React.js (Vite), styled with Tailwind CSS (Custom Civic Blue/White Palette)
 * **Backend & Database:** Supabase (PostgreSQL, Storage Buckets, PostGIS logic)
 * **Maps:** React-Leaflet with OpenStreetMap (Free Tiles)
-* **AI Engine:** Google Gemini 1.5 Flash Vision API
+* **AI Engine:** Google Gemini 3.5 Flash Vision API
 * **Client-Side Processing:** `exif-js` (Metadata extraction), `browser-image-compression`
 * **Hosting:** Vercel
 
